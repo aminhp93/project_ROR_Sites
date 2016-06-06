@@ -7,7 +7,7 @@ class DemoController < ApplicationController
   def hello
   	# render('index')
     @id = params['id']
-    @page = params[:page]
+    @page = params[:page] 
   end
 
   def other_hello
