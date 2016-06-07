@@ -1,40 +1,36 @@
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<% if !flash[:notice].blank? %>
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 
-<div class="sections edit">
-  <h2>Update Section</h2>
+<div class="sections index">
+  <h2>Sections</h2>
 
-  <%= form_for(:section, :url => {:action => 'update', :id => @section.id}) do |f| %>
+  <%= link_to("Add New Section", {:action => 'new'}, :class => 'action new') %>
 
-    <table summary="Section form fields">
-      <tr>
-        <th>Page ID</th>
-        <td><%= f.text_field(:page_id) %></td>
-      </tr>
-      <tr>
-        <th>Name</th>
-        <td><%= f.text_field(:name) %></td>
-      </tr>
-      <tr>
-        <th>Position</th>
-        <td><%= f.text_field(:position) %></td>
-      </tr>
-      <tr>
-        <th>Visible</th>
-        <td><%= f.text_field(:visible) %></td>
-      </tr>
-      <tr>
-        <th>Content Type</th>
-        <td><%= f.text_field(:content_type) %></td>
-      </tr>
-      <tr>
-        <th>Content</th>
-        <td><%= f.text_field(:content) %></td>
-      </tr>
-    </table>
-
-    <div class="form-buttons">
-      <%= submit_tag("Update Section") %>
-    </div>
-
-  <% end %>
+  <table class="listing" summary="Section list">
+    <tr class="header">
+      <th>&nbsp;</th>
+      <th>Page ID</th>
+      <th>Section</th>
+      <th>Content Type</th>
+      <th>Visible</th>
+      <th>Actions</th>
+    </tr>
+    <% @sections.each do |section| %>
+    <tr>
+      <td><%= section.position %></td>
+      <td><%= section.page_id %></td>
+      <td><%= section.name %></td>
+      <td><%= section.content_type %></td>
+      <td class="center"><%= section.visible ? 'Yes' : 'No' %></td>
+      <td class="actions">
+        <%= link_to("Show", {:action => 'show', :id => section.id}, :class => 'action show') %>
+        <%= link_to("Edit", {:action => 'edit', :id => section.id}, :class => 'action edit') %>
+        <%= link_to("Delete", {:action => 'delete', :id => section.id}, :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
 </div>
