@@ -3,7 +3,16 @@
 TEST
 
 <a href="/demo/hello">Hello page 1</a><br />
+
 <%= link_to('Hello page 2', {:action => 'hello'}) %>
+<br />
 
 <%= link_to('Hello with parameters', {:action => 'hello', :page => 4, :id => 20}) %>
+<br />
 
+<% name = "Aminn" %>
+<% name = "Sorry!'); alert('I hacked you!" %>
+
+<%= link_to('Roar', '#', :onclick => "jsRoar('JavaScript #{j(name)}'); return true;") %>
+
+<%= javascript_tag("jsRoar('Rails #{j(name)}');") %>
