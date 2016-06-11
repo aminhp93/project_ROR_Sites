@@ -1,11 +1,18 @@
 class Subject < ActiveRecord::Base
 
+	# Could delete related pages automatically whenever a subject id deleted:
+	# has_many :pages, :dependent => :destroy
 	has_many :pages
 
 	acts_as_list
 
+	# Don't need to validate (in most cases):
+	# 	ids, foreign keys, timestamps, booleans, couters
 	validates_presence_of :name
 	validates_length_of :name, :maximum => 255
+		# validates_presence_of vs. validates_length_of :minimum => 1
+		# differnet error messages: "can't be blank" or "is too short"
+		# validates_length_of allows strings with only spaces!
 
 	scope :visible, lambda {where(:visible => true)}
 	scope :invisible, lambda { where(:visible => false)}
