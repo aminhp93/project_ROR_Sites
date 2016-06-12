@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
 
+  # get 'public/index'
+
+  # get 'public/show'
+
   # get 'admin_users/index'
 
   # get 'admin_users/new'
@@ -9,8 +13,9 @@ Rails.application.routes.draw do
 
   # get 'admin_users/delete'
 
-  root :to => "demo#index"
+  root "public#index"
 
+  get 'show/:permalink', :to => 'public#show'
   get 'admin', :to => "access#index"
 
   # get 'access/login'
